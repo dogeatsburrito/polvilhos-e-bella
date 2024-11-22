@@ -14,7 +14,7 @@ class Pessoa:
 
     @cpf.setter
     def cpf(self, valor):
-        if not valor.isnum() or len(valor)>11:
+        if not valor.isnum() or len(valor) == 11:
             self._cpf = valor
         else:
             raise ValueError("Digite o cpf corretamente!")
@@ -37,7 +37,7 @@ class Pessoa:
 
 class Estudante(Pessoa):
     def __init__(self, nome, endereco, responsavel, emailresponsavel, registro, Segmento, Turma, curso, usuario, email, senha):
-        super().__init__(nome, endereco, usuario, email, senha)
+        super().__init__(nome, endereco=endereco, usuario, email, senha)
         self.responsavel = responsavel
         self.emailresponsavel = emailresponsavel
         self._registroacademico = registro
@@ -111,9 +111,18 @@ class Turma:
                      pass #continuar daqui
             
 class SegmentoEnsino:
-    def __init__(self, nome, Cursos, Disciplinas, Turmas):
+    def __init__(self, nome, cursos: [str], disciplinas, turmas):
         self.nome= nome
-        self.cursos= Cursos
-        self.disciplinas= Disciplinas
-        self.turmas= Turmas
+        self.cursos= cursos
+        self.disciplinas= disciplinas
+        self.turmas= turmas
+        
+class EnsinoMedio(SegmentoEnsino):
+    def __init__(self, nome, cursos, disciplinas,turmas):
+        super().__init__(self, nome, cursos, disciplinas, turmas)
+
+class EnsinoSuperior(SegmentoEnsino):
+    def __init__(self, nome, cursos, disciplinas,turmas):
+        super().__init__(self, nome, cursos, disciplinas, turmas)
+       
     
