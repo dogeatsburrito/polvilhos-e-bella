@@ -65,14 +65,6 @@ class Estudante(Pessoa):
         else:
             print(f"Erro: O curso de '{novo_curso}' não está disponível na turma '{nova_turma.nome}'.")
 
-    def __str__(self):
-
-        cursos_str = ' e '.join(self.curso)
-        turmas_str = ', '.join([turma.nome for turma in self.turmas])
-
-        return(f"O estudante {self.nome} faz parte da(s) turma(s) {turmas_str} e curso(s) {cursos_str} do {self.segmento.nome}\nInformações
-                adicionais:\nUsuário:{self.usuario}\nEmail:{self.email}\nResponsável: {self.responsavel}\nEmail do Responsável: {self.emailresponsavel}")
-
 class Professor(Pessoa):
     def __init__(self, nome, endereco, formacao, Disciplinas, Segmentos, Turmas, usuario, email, senha):
         super().__init__(nome, endereco, usuario, email, senha)
@@ -80,16 +72,6 @@ class Professor(Pessoa):
         self.disciplinas= Disciplinas
         self.segmento = Segmentos
         self.turma = Turmas
-
-    def __str__(self):
-    
-        disciplinas_str = ', '.join([disciplina.descricao for disciplina in self.disciplinas]) if isinstance(self.disciplinas, list) else self.disciplinas.descricao
-        turmas_str = ', '.join([turma.nome for turma in self.turmas]) if isinstance(self.turmas, list) else self.turmas.nome
-        segmentos_str = ', '.join([segmento.nome for segmento in self.segmentos]) if isinstance(self.segmentos, list) else self.segmentos.nome
-
-        return (f"O professor {self.nome} da(s) disciplina(s) {disciplinas_str} "
-                f"realiza sua aula na(s) turma(s) {turmas_str} "
-                f"no(s) segmento(s) {segmentos_str}.\nInformações adicionais:\nUsuário: {self.usuario}\nEmail: {self.email}\n")
 
 class Disciplina:
     def __init__(self, id, descricao, Segmento, Professores):
@@ -112,7 +94,7 @@ class Turma:
         self.alunos = Alunos
         self.professores = Professores
         self.disciplinas = Disciplinas
-
+        
     def __str__(self):
        alunos_str = ', '.join([aluno.nome for aluno in self.alunos]) if isinstance(self.alunos, list) else self.alunos.nome
        professores_str = ', '.join([professor.nome for professor in self.professores]) if isinstance(self.professores, list) else self.professores.nome
@@ -120,6 +102,16 @@ class Turma:
 
        return (f"A turma {self.nome}")
 
+    def editarTurma(self):
+        mudanca=input("O que deseja mudar na turma?\n1- Nome\n2- Alunos\n3- Professores\n4- Disciplinas\n5- Nada")
+        mudanca= mudanca.upper()
+        while mudanca!= "NADA":
+              if mudanca == "Nome":
+                novo_nome=input("Qual será o novo nome da turma?")
+                self.nome=novo_nome
+              elif mudanca == "Alunos":
+                     pass #continuar daqui
+            
 class SegmentoEnsino:
     def __init__(self, nome, Cursos, Disciplinas, Turmas):
         self.nome= nome
