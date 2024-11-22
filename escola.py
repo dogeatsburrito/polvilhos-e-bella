@@ -37,6 +37,8 @@ class Pessoa:
 
 class Estudante(Pessoa):
     def __init__(self, nome, endereco, responsavel, emailresponsavel, registro, Segmento, Turma, curso, usuario, email, senha):
+        if segmento.nome == "Ensino Médio" and curso not in segmento.cursos_validos:
+            raise ValueError(f"Curso '{curso}' não é válido para o segmento Ensino Médio. Os cursos válidos são: {', '.join(segmento.cursos_validos)}")
         super().__init__(nome, endereco, usuario, email, senha)
         self.responsavel = responsavel
         self.emailresponsavel = emailresponsavel
@@ -121,6 +123,21 @@ class Turma:
 class SegmentoEnsino:
     def __init__(self, nome, Cursos, Disciplinas, Turmas):
         self.nome= nome
+        self.cursos_validos = cursos_validos
         self.cursos= Cursos
         self.disciplinas= Disciplinas
         self.turmas= Turmas
+        
+    def adicionarcurso (self,cursos):
+        if curso not in self.cursos_validos:
+            raise ValueError(f"O curso '{curso}' não é uma opção válida para o segmento {self.nome}.")
+            
+        if curso in self.cursos:
+            raise ValueError(f"O curso '{curso}' já está registrado no segmento {self.nome}.")
+            
+        self.cursos.append(curso)
+        print(f"O curso '{curso}' foi adicionado ao segmento {self.nome}.")
+
+    def listarcursos(self):
+        return self.cursos
+    
