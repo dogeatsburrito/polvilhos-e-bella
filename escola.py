@@ -113,10 +113,10 @@ class Turma:
 
     def __str__(self):
        alunos_str = ', '.join([aluno.nome for aluno in self.alunos]) if isinstance(self.alunos, list) else self.alunos.nome
-       professores_str = ', '.join([professor.nome for professor in self.professores]) if isinstance(self.professores, list) else self.segmentos.nome
+       professores_str = ', '.join([professor.nome for professor in self.professores]) if isinstance(self.professores, list) else self.professores.nome
        disciplinas_str = ', '.join([disciplina.descricao for disciplina in self.disciplinas]) if isinstance(self.disciplinas, list) else self.disciplinas.descricao
 
-       return (f"")
+       return (f"A turma {self.nome}")
 
 class SegmentoEnsino:
     def __init__(self, nome, Cursos, Disciplinas, Turmas):
