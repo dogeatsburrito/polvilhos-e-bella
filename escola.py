@@ -14,10 +14,10 @@ class Pessoa:
 
     @cpf.setter
     def cpf(self, valor):
-        if not valor.isnum() or len(valor) == 11:
+        if not valor.isnum() or len(valor)==11:
             self._cpf = valor
         else:
-            raise ValueError("Digite o cpf corretamente!")
+            raise ValueError("Você não digitou o cpf corretamente!")
         
     @property
     def endereco(self):
@@ -37,7 +37,7 @@ class Pessoa:
 
 class Estudante(Pessoa):
     def __init__(self, nome, endereco, responsavel, emailresponsavel, registro, Segmento, Turma, curso, usuario, email, senha):
-        super().__init__(nome, endereco=endereco, usuario, email, senha)
+        super().__init__(nome, endereco, usuario, email, senha)
         self.responsavel = responsavel
         self.emailresponsavel = emailresponsavel
         self._registroacademico = registro
@@ -101,22 +101,17 @@ class Turma:
        return (f"A turma {self.nome}")
 
     def editarTurma(self):
-        mudanca=input("O que deseja mudar na turma?\n1- Nome\n2- Alunos\n3- Professores\n4- Disciplinas\n5- Nada")
-        mudanca= mudanca.upper()
-        while mudanca!= "NADA":
-              if mudanca == "Nome":
-                novo_nome=input("Qual será o novo nome da turma?")
-                self.nome=novo_nome
-              elif mudanca == "Alunos":
-                     pass #continuar daqui
+        novo_nome=input("Qual será o novo nome da turma?")
+        if isinstance(novo_nome, str):
+            self.nome=novo_nome
             
 class SegmentoEnsino:
-    def __init__(self, nome, cursos: [str], disciplinas, turmas):
+    def __init__(self, nome, Cursos, Disciplinas, Turmas):
         self.nome= nome
-        self.cursos= cursos
-        self.disciplinas= disciplinas
-        self.turmas= turmas
-        
+        self.cursos= Cursos
+        self.disciplinas= Disciplinas
+        self.turmas= Turmas
+    
 class EnsinoMedio(SegmentoEnsino):
     def __init__(self, nome, cursos, disciplinas,turmas):
         super().__init__(self, nome, cursos, disciplinas, turmas)
@@ -124,5 +119,3 @@ class EnsinoMedio(SegmentoEnsino):
 class EnsinoSuperior(SegmentoEnsino):
     def __init__(self, nome, cursos, disciplinas,turmas):
         super().__init__(self, nome, cursos, disciplinas, turmas)
-       
-    
