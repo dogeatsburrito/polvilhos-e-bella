@@ -116,17 +116,4 @@ class SegmentoEnsino:
         self.cursos= Cursos
         self.disciplinas= Disciplinas
         self.turmas= Turmas
-        
-    def adicionarcurso (self,cursos):
-        if curso not in self.cursos_validos:
-            raise ValueError(f"O curso '{curso}' não é uma opção válida para o segmento {self.nome}.")
-            
-        if curso in self.cursos:
-            raise ValueError(f"O curso '{curso}' já está registrado no segmento {self.nome}.")
-            
-        self.cursos.append(curso)
-        print(f"O curso '{curso}' foi adicionado ao segmento {self.nome}.")
-
-    def listarcursos(self):
-        return self.cursos
     
