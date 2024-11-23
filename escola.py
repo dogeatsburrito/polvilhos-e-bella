@@ -14,7 +14,7 @@ class Pessoa:
 
     @cpf.setter
     def cpf(self, valor):
-        if not valor.isnum() or len(valor)==11:
+        if valor.isnum() and len(valor)==11:
             self._cpf = valor
         else:
             raise ValueError("Você não digitou o cpf corretamente!")
