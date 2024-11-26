@@ -44,6 +44,26 @@ class Estudante(Pessoa):
         self.segmento = segmento
         self.turma = Turma
         self.curso = curso
+        
+    def validar_curso(self, segmento, curso):
+        cursos_em = ["mecatrônica", "eletromecânica", "informática"]
+        cursos_formatados = "mecatrônica, eletromecânica, informática"
+        cursos_es = ["bacharel em ciências da computação", "bacharel em pedagogia"]
+        cursos_es_formatados = "mecatrônica, eletromecânica, informática"
+        if segmento =="Ensino Superior":
+            if not curso or curso.lower() not in cursos_es:
+                raise ValueError(
+                    f"Estudantes do Ensino Superior devem estar em um dos cursos: {cursos_es_formatados}. "
+                    f"O curso fornecido foi: '{curso}'."     
+                )
+            
+        elif segmento == "Ensino Médio":
+            if not curso or curso.lower() not in cursos_em:
+                raise ValueError(
+                    f"Estudantes do Ensino Médio devem estar em um dos cursos: {cursos_formatados}. "
+                    f"O curso fornecido foi: '{curso}'."
+                )
+        return curso.lower() if curso else None
 
     @property
     def registroacademico(self):
@@ -53,17 +73,7 @@ class Estudante(Pessoa):
     def registroacademico(self, valor):
         self._registroacademico = valor
     
-    def validar_curso(self, segmento, curso):
-        cursos_em = ["mecatrônica", "eletromecânica", "informática"]
-        
-        if segmento == "Ensino Médio":
-            if not curso or curso.lower() not in cursos_em:
-                raise ValueError(
-                    f"Estudantes do Ensino Médio devem estar em um dos cursos: {', '.join(cursos_em)}. "
-                    f"O curso fornecido foi: '{curso}'."
-                )
-                
-        return curso.lower() if curso else None
+   
 
     def transferirCurso(self, nova_turma, novo_curso):
         if isinstance(self.curso, list):
