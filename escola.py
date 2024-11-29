@@ -54,7 +54,6 @@ class Estudante(Pessoa):
                     f"Estudantes do Ensino Médio devem estar em um dos cursos: {cursos_formatados}. "
                     f"O curso fornecido foi: '{curso}'."
                 )
-        return curso.lower() if curso else None
         self.responsavel = responsavel
         self.emailresponsavel = emailresponsavel
         self._registroacademico = registro
