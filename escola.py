@@ -41,7 +41,7 @@ class Estudante(Pessoa):
         cursos_em = ["mecatrônica", "eletromecânica", "informática"]
         cursos_formatados = "mecatrônica, eletromecânica, informática"
         cursos_es = ["bacharel em ciências da computação", "bacharel em pedagogia"]
-        cursos_es_formatados = "mecatrônica, eletromecânica, informática"
+        cursos_es_formatados = "bacharel em ciências da computação, bacharel em pedagogia"
         if segmento =="Ensino Superior":
             if not curso or curso.lower() not in cursos_es:
                 raise ValueError(
