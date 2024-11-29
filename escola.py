@@ -41,7 +41,7 @@ class Estudante(Pessoa):
         cursos_em = ["mecatrônica", "eletromecânica", "informática"]
         cursos_formatados = "mecatrônica, eletromecânica, informática"
         cursos_es = ["bacharel em ciências da computação", "bacharel em pedagogia"]
-        cursos_es_formatados = "mecatrônica, eletromecânica, informática"
+        cursos_es_formatados = "bacharel em ciências da computação, bacharel em pedagogia"
         if segmento =="Ensino Superior":
             if not curso or curso.lower() not in cursos_es:
                 raise ValueError(
@@ -54,6 +54,11 @@ class Estudante(Pessoa):
                     f"Estudantes do Ensino Médio devem estar em um dos cursos: {cursos_formatados}. "
                     f"O curso fornecido foi: '{curso}'."
                 )
+        else:
+            raise ValueError(
+                "Segmento não existente"
+            )
+            
         return curso.lower() if curso else None
         self.ativa= True
         self.responsavel = responsavel
