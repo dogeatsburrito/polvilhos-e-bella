@@ -26,6 +26,20 @@ class Turma:
 
        return (f"A turma {self.nome} do curso {self.curso} do {self.segmento} foi iniciada em {self.ano}.\nALUNOS PARTICIPANTES:\n{alunos_str}\nPROFESSORES PARTICIPANTES:\n{professores_str}\nGRADE CURRÍCULAR:\n{disciplinas_str}\n")
 
+    def desativar(self):
+        if not self.ativa:
+            print(f"A turma {self.nome} já está desativada.")
+        else:
+            self.ativa = False  # Marca a turma como desativada
+            print(f"Turma {self.nome} foi desativada.")
+
+    def ativar(self):
+        if self.ativa:
+            print(f"A turma {self.nome} já está ativa.")
+        else:
+            self.ativa = True  # Marca a turma como ativa novamente
+            print(f"Turma {self.nome} foi reativada.")
+    
     def editarTurma(self):
         while True:
             print("\nO que você deseja editar?")
@@ -218,17 +232,3 @@ class Turma:
 
             else:
                 print("Opção inválida. Tente novamente.")
-
-    def desativar(self):
-        if not self.ativa:
-            print(f"A turma {self.nome} já está desativada.")
-        else:
-            self.ativa = False  # Marca a turma como desativada
-            print(f"Turma {self.nome} foi desativada.")
-
-    def ativar(self):
-        if self.ativa:
-            print(f"A turma {self.nome} já está ativa.")
-        else:
-            self.ativa = True  # Marca a turma como ativa novamente
-            print(f"Turma {self.nome} foi reativada.")
