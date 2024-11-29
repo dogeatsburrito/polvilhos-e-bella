@@ -41,7 +41,7 @@ class Estudante(Pessoa):
         cursos_em = ["mecatrônica", "eletromecânica", "informática"]
         cursos_formatados = "mecatrônica, eletromecânica, informática"
         cursos_es = ["bacharel em ciências da computação", "bacharel em pedagogia"]
-        cursos_es_formatados = "bacharel em ciências da computação, bacharel em pedagogia"
+        cursos_es_formatados = "mecatrônica, eletromecânica, informática"
         if segmento =="Ensino Superior":
             if not curso or curso.lower() not in cursos_es:
                 raise ValueError(
@@ -54,6 +54,8 @@ class Estudante(Pessoa):
                     f"Estudantes do Ensino Médio devem estar em um dos cursos: {cursos_formatados}. "
                     f"O curso fornecido foi: '{curso}'."
                 )
+        return curso.lower() if curso else None
+        self.ativa= True
         self.responsavel = responsavel
         self.emailresponsavel = emailresponsavel
         self._registroacademico = registro
@@ -79,20 +81,64 @@ class Estudante(Pessoa):
         else:
             print(f"Erro: O curso de '{novo_curso}' não está disponível na turma '{nova_turma.nome}'.")
 
+     def desativar(self):
+        if not self.ativa:
+            print(f"O estudante {self.nome} já está desativo")
+        else:
+            self.ativa = False  # Marca o estudante como desativada
+            print(f"Estudante {self.nome} foi desativado.")
+
+    def ativar(self):
+        if self.ativa:
+            print(f"O estudante {self.nome} já está ativo.")
+        else:
+            self.ativa = True  # Marca estudante como ativa novamente
+            print(f"Estudante {self.nome} foi reativado.")
+
 class Professor(Pessoa):
     def __init__(self, nome, endereco, formacao, Disciplinas, segmentos, Turmas, usuario, email, senha):
         super().__init__(nome, endereco, usuario, email, senha)
+        self.ativa= True
         self.formacao= formacao
         self.disciplinas= Disciplinas
         self.segmento = segmentos
         self.turma = Turmas
 
+    def desativar(self):
+        if not self.ativa:
+            print(f"O professor {self.nome} já está desativo")
+        else:
+            self.ativa = False  # Marca o professor como desativada
+            print(f"Professor {self.nome} foi desativado.")
+
+    def ativar(self):
+        if self.ativa:
+            print(f"O professor {self.nome} já está ativo.")
+        else:
+            self.ativa = True  # Marca professor como ativa novamente
+            print(f"Professor {self.nome} foi reativado.")
+
 class Disciplina:
     def __init__(self, id, descricao, segmento, Professores):
+        self.ativa= True
         self.id= id
         self.descricao= descricao
         self.segmento= segmento
         self.professores= Professores
+
+    def desativar(self):
+        if not self.ativa:
+            print(f"A disciplina {self.nome} já está desativa")
+        else:
+            self.ativa = False  # Marca a disciplina como desativada
+            print(f"Disciplina {self.nome} foi desativada.")
+
+    def ativar(self):
+        if self.ativa:
+            print(f"A disciplina {self.nome} já está ativa.")
+        else:
+            self.ativa = True  # Marca a disciplina como ativa novamente
+            print(f"Disciplina {self.nome} foi reativada.")
 
 class Turma:
     def __init__(self, nome, segmento, Curso, anoescolar, Alunos, Professores, Disciplinas):
