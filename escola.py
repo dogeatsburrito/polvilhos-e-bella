@@ -38,22 +38,6 @@ class Pessoa:
 class Estudante(Pessoa):
     def __init__(self, nome, endereco, responsavel, emailresponsavel, registro, segmento, Turma, curso, usuario, email, senha):
         super().__init__(nome, endereco, usuario, email, senha)
-        self.responsavel = responsavel
-        self.emailresponsavel = emailresponsavel
-        self._registroacademico = registro
-        self.segmento = segmento
-        self.turma = Turma
-        self.curso = curso
-
-    @property
-    def registroacademico(self):
-        return self._registroacademico
-
-    @registroacademico.setter
-    def registroacademico(self, valor):
-        self._registroacademico = valor
-        
-    def validar_curso(self, segmento, curso):
         cursos_em = ["mecatrônica", "eletromecânica", "informática"]
         cursos_formatados = "mecatrônica, eletromecânica, informática"
         cursos_es = ["bacharel em ciências da computação", "bacharel em pedagogia"]
@@ -71,8 +55,20 @@ class Estudante(Pessoa):
                     f"O curso fornecido foi: '{curso}'."
                 )
         return curso.lower() if curso else None
-    
-   
+        self.responsavel = responsavel
+        self.emailresponsavel = emailresponsavel
+        self._registroacademico = registro
+        self.segmento = segmento
+        self.turma = Turma
+        self.curso = curso
+
+    @property
+    def registroacademico(self):
+        return self._registroacademico
+
+    @registroacademico.setter
+    def registroacademico(self, valor):
+        self._registroacademico = valor 
 
     def transferirCurso(self, nova_turma, novo_curso):
         if isinstance(self.curso, list):
