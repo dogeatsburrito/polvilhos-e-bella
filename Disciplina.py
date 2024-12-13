@@ -1,7 +1,6 @@
 class Disciplina:
     def __init__(self, id, descricao, segmento, Professores):
         self.ativa= True
-        self.id= id
         self.descricao= descricao
         self.segmento= segmento
         self.professores= Professores
@@ -23,22 +22,13 @@ class Disciplina:
     def editarDisciplina(self):
         while True:
             print("\nO que você deseja editar?")
-            print("1. ID da disciplina")
-            print("2. Descricao")
-            print("3. Professores")
-            print("4. Segmento")
-            print("5. Encerrar edição")
+            print("1. Descricao")
+            print("2. Professores")
+            print("3. Segmento")
+            print("4. Encerrar edição")
             escolha = input("Digite o número da opção desejada: ").strip()
 
-            if escolha == "1":  # Editar ID
-                novo_id = input("Qual será o novo ID da turma? ").strip()
-                if novo_id.lower() == "cancelar":
-                    print("Operação cancelada.")
-                    continue
-                self.id = novo_id
-                print(f"O nome da turma foi alterado para '{self.id}'.")
-
-            elif escolha == "2":  # Editar descricao
+            if escolha == "1":  # Editar descricao
                 nova_descricao = input("Qual será a nova descrição da turma? ").strip()
                 if nova_descricao.lower() == "cancelar":
                     print("Operação cancelada.")
@@ -47,7 +37,7 @@ class Disciplina:
                 print(f"O nome da turma foi alterado para '{self.descricao}'.")
 
 
-            elif escolha == "3":  # Editar professores
+            elif escolha == "2":  # Editar professores
                 print("Deseja adicionar ou excluir professores?")
                 print("1. Adicionar")
                 print("2. Excluir")
@@ -103,7 +93,7 @@ class Disciplina:
                         except ValueError:
                             print("Entrada inválida. Tente novamente.")
 
-            elif escolha == "4":  # Editar segmento 
+            elif escolha == "3":  # Editar segmento 
                 novo_segmento = input("Qual será o novo segmento? ").strip()
                 if novo_segmento.lower() == "cancelar":
                     print("Operação cancelada.")
@@ -111,7 +101,7 @@ class Disciplina:
                 self.segmento = novo_segmento
                 print(f"O nome do segmento foi alterado para '{self.segmento}'.")
 
-            elif escolha == "5":  # Encerrar edição
+            elif escolha == "4":  # Encerrar edição
                 print("Edição encerrada.")
                 break
 
