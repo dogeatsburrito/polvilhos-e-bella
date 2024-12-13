@@ -119,11 +119,11 @@ class Professor(Pessoa):
                         try:
                             # Aqui você valida o objeto disciplina (exemplo: verificar se é uma instância de Disciplina)
                             if isinstance(professor, Disciplina):
-                                print(f"Você deseja adicionar {disciplina.descricao} ao professor {self.descricao}? (Digite 'sim' para confirmar ou 'cancelar' para encerrar)")
+                                print(f"Você deseja adicionar {disciplina.descricao} ao professor {self.nome}? (Digite 'sim' para confirmar ou 'cancelar' para encerrar)")
                                 confirmacao = input().strip().lower()
                                 if confirmacao == "sim":
                                     self.disciplinas.append(professor)
-                                    print(f"Disciplina {disciplina.descricao} adicionada ao professor {self.descricao}.")
+                                    print(f"Disciplina {disciplina.descricao} adicionada ao professor {self.nome}.")
                                     break
                                 elif confirmacao == "cancelar":
                                     print("Operação cancelada.")
