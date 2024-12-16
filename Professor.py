@@ -7,7 +7,8 @@ class Professor(Pessoa):
         self.disciplinas= Disciplinas
         self.segmento = segmentos
         self.turma = Turmas
-
+        self.lista_disciplinas = []
+        
     def desativar(self):
         if not self.ativa:
             print(f"O professor {self.nome} já está desativo")
