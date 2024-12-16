@@ -71,21 +71,35 @@ class Turma:
                             print("Operação cancelada.")
                             break
                         try:
-                            # Aqui você valida o objeto do aluno (exemplo: verificar se é uma instância de Estudante)
-                            if isinstance(aluno, Estudante):
-                                print(f"Você deseja adicionar {aluno.nome} à turma {self.nome}? (Digite 'sim' para confirmar ou 'cancelar' para encerrar)")
-                                confirmacao = input().strip().lower()
-                                if confirmacao == "sim":
-                                    self.alunos.append(aluno)
-                                    print(f"Aluno {aluno.nome} adicionado à turma {self.nome}.")
-                                    break
-                                elif confirmacao == "cancelar":
-                                    print("Operação cancelada.")
-                                    break
+                            # Verifica se o objeto é uma instância da classe Estudante
+                            if not isinstance(aluno, Estudante):
+                                raise TypeError("O objeto fornecido não é um aluno válido.")
+                
+                            # Verifica as regras de matrícula por segmento
+                            if aluno.segmento == "Ensino Médio" and len(aluno.turmas) >= 1:
+                                raise ValueError(f"O aluno {aluno.nome} já está matriculado em uma turma de Ensino Médio.")
+                            elif aluno.segmento == "Ensino Superior" and len(aluno.turmas) >= 2:
+                                raise ValueError(f"O aluno {aluno.nome} já está matriculado em duas turmas de Ensino Superior.")
+                
+                            # Solicita confirmação para adicionar o aluno
+                            print(f"Você deseja adicionar {aluno.nome} à turma {self.nome}? (Digite 'sim' para confirmar ou 'cancelar' para encerrar)")
+                            confirmacao = input().strip().lower()
+
+                            if confirmacao == "sim":
+                                self.alunos.append(aluno)
+                                aluno.turmas.append(self)  # Adiciona a turma ao atributo do aluno
+                                print(f"Aluno {aluno.nome} adicionado à turma {self.nome}.")
+                            elif confirmacao == "cancelar":
+                                print("Operação cancelada.")
                             else:
-                                print("O objeto fornecido não é um aluno válido. Tente novamente.")
+                                print("Resposta inválida. Operação encerrada.")
+
+                        except TypeError as te:
+                            print(f"Erro de tipo: {te}")
+                        except ValueError as ve:
+                            print(f"Erro de validação: {ve}")
                         except Exception as e:
-                            print(f"Erro ao adicionar aluno: {e}")
+                            print(f"Erro inesperado ao adicionar aluno: {e}")
                 
                 elif acao == "2":  # Excluir aluno
                     while True:
