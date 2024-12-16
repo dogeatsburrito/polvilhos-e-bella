@@ -26,7 +26,7 @@ class Estudante(Pessoa):
         self.segmento = segmento
         self.turma = Turma
         self.curso = curso
-
+        self.lista_turmas = []
     @property
     def registroacademico(self):
         return self._registroacademico
