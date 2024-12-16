@@ -1,3 +1,6 @@
+lista_disciplinas = []
+lista_turmas = []
+
 class Disciplina:
     def __init__(self, id, descricao, segmento, Professores):
         self.ativa= True
